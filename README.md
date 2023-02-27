@@ -1,2 +1,12 @@
-# monaco-editor
-create code editor with monaco editor 
+# Monaco Editor
+
+Create monaco editor with react
+
+---
+
+## Usage
+
+After clone repository:
+
+- yarn
+- yarn start
