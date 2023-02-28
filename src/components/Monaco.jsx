@@ -12,42 +12,36 @@ const Monaco = () => {
     editorRef.current?.focus();
   }, [language.name]);
 
+  const handleLanguageChange = (event) => {
+    setLanguageName(event.target.value);
+  };
+
   return (
-    <>
-      <button
-        disabled={languageName === 'script.js'}
-        onClick={() => setLanguageName('script.js')}
-      >
-        javaScript
-      </button>
-      <button
-        disabled={languageName === 'style.css'}
-        onClick={() => setLanguageName('style.css')}
-      >
-        css
-      </button>
-      <button
-        disabled={languageName === 'index.html'}
-        onClick={() => setLanguageName('index.html')}
-      >
-        html
-      </button>
-      <button
-        disabled={languageName === 'json'}
-        onClick={() => setLanguageName('json')}
-      >
-        json
-      </button>
-      <MonacoEditor
-        width="100%"
-        height="100vh"
-        path={language.name}
-        defaultLanguage={language.language}
-        defaultValue={language.value}
-        theme="vs-dark"
-        onMount={(editor) => (editorRef.current = editor)}
-      />
-    </>
+    <div className="container">
+      <div className="moaco-container">
+        <MonacoEditor
+          width="100%"
+          height="100%"
+          path={language.name}
+          defaultLanguage={language.language}
+          defaultValue={language.value}
+          theme="vs-dark"
+          onMount={(editor) => (editorRef.current = editor)}
+        />
+      </div>
+      <div className="language-container">
+        <select
+          value={languageName}
+          onChange={handleLanguageChange}
+          className="language-selector"
+        >
+          <option value="script.js">JavaScript</option>
+          <option value="style.css">CSS</option>
+          <option value="index.html">HTML</option>
+          <option value="json">JSON</option>
+        </select>
+      </div>
+    </div>
   );
 };
 

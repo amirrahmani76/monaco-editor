@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.moaco-container {
+  flex: 1;
+}
+
+.language-container {
+  display: flex;
+  justify-content: flex-end;
+  justify-self: center;
+  background-color: rgb(47, 47, 47);
+
+}
+
+.language-selector {
+  cursor: pointer;
+  padding: 0.6em 1.5em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  color: rgb(184, 184, 184);
+}
+
+.language-selector:focus {
+  outline: none;
+}
+
+.language-selector,
+.language-selector:focus {
+  background: rgb(47, 47, 47);
+  background-image: url("../public/brackets.svg");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 20px 20px;
+}
