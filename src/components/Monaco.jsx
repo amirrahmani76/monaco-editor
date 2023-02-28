@@ -1,22 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MonacoEditor from '@monaco-editor/react';
+import languages from './languages';
 
 const Monaco = () => {
-  const [code, setCode] = useState('// Start typing your code here...');
+  const editorRef = useRef(null);
+  const [languageName, setLanguageName] = useState('script.js');
 
-  function handleEditorChange(value, event) {
-    setCode(value);
-  }
+  const language = languages[languageName];
+
+  useEffect(() => {
+    editorRef.current?.focus();
+  }, [language.name]);
 
   return (
-    <MonacoEditor
-      width="100%"
-      height="100vh"
-      language="javascript"
-      value={code}
-      theme="vs-dark"
-      onChange={handleEditorChange}
-    />
+    <>
+      <button
+        disabled={languageName === 'script.js'}
+        onClick={() => setLanguageName('script.js')}
+      >
+        javaScript
+      </button>
+      <button
+        disabled={languageName === 'style.css'}
+        onClick={() => setLanguageName('style.css')}
+      >
+        css
+      </button>
+      <button
+        disabled={languageName === 'index.html'}
+        onClick={() => setLanguageName('index.html')}
+      >
+        html
+      </button>
+      <button
+        disabled={languageName === 'json'}
+        onClick={() => setLanguageName('json')}
+      >
+        json
+      </button>
+      <MonacoEditor
+        width="100%"
+        height="100vh"
+        path={language.name}
+        defaultLanguage={language.language}
+        defaultValue={language.value}
+        theme="vs-dark"
+        onMount={(editor) => (editorRef.current = editor)}
+      />
+    </>
   );
 };
 
